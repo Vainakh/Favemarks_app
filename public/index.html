@@ -1,0 +1,45 @@
+<html lang="en" dir="ltr" ng-app="MyApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+  <script src="/js/app.js"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Pacifico&display=swap" rel="stylesheet">
+
+  <title>Favemarks</title>
+</head>
+  <body ng-controller="MyController as ctrl">
+    <header class="header">
+      <h1 class="page-title"><span class="title-span">Fave</span>marks
+      </h1>
+      <h2 class="page-subtitle"> bookmark your favorite website!</h2>
+    </header>
+      <div class="pop-message" ng-if="ctrl.message">
+        {{ ctrl.message }}
+      </div>
+      <form class="form" ng-submit="ctrl.createBookmark()">
+        <input class="input-field-1" type="text" ng-model="ctrl.title" placeholder="enter website name...">
+        <input class="input-field-2" type="url" ng-model="ctrl.url" placeholder="http:// " pattern="https?://.+" required>
+        <input class="btn-submit" type="submit" value="Create">
+      </form>
+      <h6>click on text to go to website:</h6>
+
+      <div class="ul-container">
+        <ul class="ul" ng-repeat="name in ctrl.responseData">
+       
+          <li class="li" >
+            <div class="title">
+             <a class="title-link" ng-href="{{ name.url }}"> {{name.title}} </a> 
+            </div>
+          </li>
+
+          <div class="icon" ng-click="ctrl.         deleteBookmark(name.title)">
+            <i class = "icon material-icons ">highlight_off</i>
+          </div>
+
+        </ul>
+      </div>
+  </body>
+</html>
